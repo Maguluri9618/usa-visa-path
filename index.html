@@ -47,13 +47,26 @@
     </div>
 
     <!-- Visa Type Auto Suggest -->
-    <div class="alerts-form">
-      <label for="visa">Get Alerts</label><br />
-      <input type="text" id="visaInput" placeholder="Type visa type..." autocomplete="off" />
-      <ul id="suggestions" class="suggestions"></ul>
-      <button onclick="subscribe()">Subscribe</button>
-    </div>
+   <section id="get-alerts">
+  <h2>Get Visa Slot Alerts</h2>
+  <form id="alertForm">
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" required placeholder="example@email.com" />
 
+    <label for="visaType">Select Visa Type:</label>
+    <select id="visaType" name="visaType" required>
+      <option value="">-- Select Visa Category --</option>
+      <option value="b1b2">B1/B2 (Tourist/Business)</option>
+      <option value="f1">F1 (Student Visa)</option>
+      <option value="h1b">H1B (Work Visa)</option>
+      <option value="l1">L1 (Intra-company Transfer)</option>
+      <option value="j1">J1 (Exchange Visitor)</option>
+      <option value="other">Other</option>
+    </select>
+
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
     <!-- FAQ Accordion -->
     <div class="faq-section">
       <h2>Frequently Asked Questions</h2>
