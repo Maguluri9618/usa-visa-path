@@ -1,1 +1,0 @@
-// JS for fetching and showing slot data
