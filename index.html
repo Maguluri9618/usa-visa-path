@@ -19,6 +19,7 @@
       <a href="#">Services</a>
       <a href="#">Contact</a>
       <span class="phone">📞 +91 7995957701</span>
+      <button id="darkToggle">🌓</button>
     </nav>
   </header>
 
@@ -45,28 +46,105 @@
       </div>
     </div>
 
+    <!-- Visa Type Auto Suggest -->
     <div class="alerts-form">
       <label for="visa">Get Alerts</label><br />
-      <select id="visa">
-        <option value="" disabled selected>Select visa type</option>
-        <option value="student">Student Visa</option>
-        <option value="visitor">Visitor Visa</option>
-        <option value="work">Work Visa</option>
-      </select>
-      <button>Subscribe</button>
+      <input type="text" id="visaInput" placeholder="Type visa type..." autocomplete="off" />
+      <ul id="suggestions" class="suggestions"></ul>
+      <button onclick="subscribe()">Subscribe</button>
     </div>
 
-    <div class="testimonial">
-      <h2>Why UVP?</h2>
-      <p>Trusted by 5000+ clients across India. Fast, reliable and secure visa tracking platform.</p>
+    <!-- FAQ Accordion -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question">What is DS-160?</button>
+        <div class="faq-answer">DS-160 is the form you must submit for US non-immigrant visas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do I book a visa slot?</button>
+        <div class="faq-answer">You can use our platform to monitor and book available slots 24x7.</div>
+      </div>
     </div>
 
-    <div class="consultation">
-      <h2>Free Consultation</h2>
-      <p>Talk to our visa advisors for free guidance. No hidden charges!</p>
+    <!-- Testimonials -->
+    <div class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial">
+        <p>"UVP helped me get my student visa slot in 2 days!"</p>
+        <span>- Priya, Hyderabad</span>
+      </div>
+      <div class="testimonial">
+        <p>"Very fast service, highly recommend."</p>
+        <span>- Rakesh, Delhi</span>
+      </div>
     </div>
 
+    <!-- Visa Slot Availability -->
+    <div class="slot-updates">
+      <h2>Latest Visa Slot Availability</h2>
+      <ul>
+        <li>Hyderabad: ✅ Available - June 25</li>
+        <li>Delhi: ❌ Not Available</li>
+        <li>Chennai: ✅ Available - July 2</li>
+      </ul>
+    </div>
+
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/6382176167" class="whatsapp-button">💬 Chat on Whatsapp</a>
+
+    <!-- Floating Help Button -->
+    <div class="help-button" onclick="alert('How can we assist you?')">❓</div>
   </main>
+
+  <script>
+    const visaTypes = [
+      "Student Visa (F1)",
+      "Student Visa (J1)",
+      "Visitor Visa (B1/B2)",
+      "Work Visa (H1B)",
+      "Dependent Visa (H4)",
+      "Exchange Visitor Visa",
+      "Transit Visa (C1)",
+      "Medical Visa"
+    ];
+
+    const input = document.getElementById('visaInput');
+    const suggestions = document.getElementById('suggestions');
+
+    input.addEventListener('input', () => {
+      const val = input.value.toLowerCase();
+      suggestions.innerHTML = '';
+      if (val.length === 0) return;
+
+      const matches = visaTypes.filter(type => type.toLowerCase().includes(val));
+      matches.forEach(match => {
+        const li = document.createElement('li');
+        li.textContent = match;
+        li.onclick = () => {
+          input.value = match;
+          suggestions.innerHTML = '';
+        };
+        suggestions.appendChild(li);
+      });
+    });
+
+    function subscribe() {
+      alert("Subscribed to alerts for: " + input.value);
+    }
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const answer = button.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+
+    // Dark mode toggle
+    document.getElementById('darkToggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
